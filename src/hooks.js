@@ -2,43 +2,23 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import "./styles.css";
 
-function App() {
-    const [item, setItem] = useState(1);
-    const incrementItem = () => setItem(item + 1);
-    const decrementItem = () => setItem(item - 1);
-
-};
-
-class AppUgly extends React.Component {
-    state = {
-        item: 1
-    };
-    render = () => {
-        const {item} = this.state;
-        return (
-            <div className="App">
-                <h1>Hello {item}</h1>
-                <h2>Start editing to see some magic happen!</h2>
-                <button onClick={this.incrementItem}>Increment</button>
-                <button onClick={this.decrementItem}>Decrement</button>
-            </div>
-        );
+const useInput = (initialValue) => {
+    const [value, setValue] = useState(initialValue);
+    const onChange = (event) => {
+        console.log(event.target);
     }
-    incrementItem = () => {
-        this.setState(state => {
-            return {
-                item: state.item + 1
-            };
-        });
-    };
-    decrementItem = () => {
-        this.setState(state => {
-            return {
-                item: state.item + 1
-            };
-        });
-    };
+    return { value, onChange };
 }
 
+const App = () => {
+    const name = useInput("Mr.");
+    return (
+        <div className="App">
+            <h1>Hello</h1>
+            <input placeholder="Name" {...name} />
+        </div>
+    );
+};
+
 const rootElement = document.getElementById("root");
-ReactDOM.render(<AppUgly/>, rootElement);
+ReactDOM.render(<App/>, rootElement);
