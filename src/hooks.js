@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import "./styles.css";
 
-const useInput = (initialValue) => {
+const useInput = (initialValue, validator) => {
     const [value, setValue] = useState(initialValue);
     const onChange = (event) => {
-        console.log(event.target);
+        const {
+            target: { value }
+        } = event;
+        setValue(value);
     }
     return { value, onChange };
 }
