@@ -8,7 +8,7 @@ const usePreventLeave = (onLeaving) => {
     }
     const enablePrevent = () => window.addEventListener("beforeunload");
     const disablePrevent = () =>
-        window.addEventListener("beforeunload", listener);
+        window.removeEventListener("beforeunload", listener);
     return { enablePrevent, disablePrevent };
 };
 
